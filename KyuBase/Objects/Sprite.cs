@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO.Compression;
 using System.Text;
 
 namespace KyuBase.Objects
@@ -53,6 +54,11 @@ namespace KyuBase.Objects
                 image = lks;
                 bdi.Dispose();
             }
+        }
+
+        public Sprite(string location, ref ZipArchive img)
+        {
+            throw new NotImplementedException();
         }
 
         public Sprite(String arr)

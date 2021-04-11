@@ -41,6 +41,11 @@ namespace KyuBase.Objects
             this.y = y;
         }
 
+        public Player(Sprite sprite)
+        {
+            this.Sprite = sprite;
+        }
+
         private void UpdateBitmap(float rotation)
         {
             Bitmap rotatedImage = new Bitmap(this.Sprite.image.Width, this.Sprite.image.Height);

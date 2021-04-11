@@ -3,6 +3,7 @@ using KyuBase.UIElements;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -12,8 +13,8 @@ namespace KyuBase.Objects
     {
         ManualResetEvent resetEvent;
 
-        Thread fThr;
-        Thread refresher;
+        public Thread fThr;
+        public Thread refresher;
 
         public List<FObject> FObjects;
         private FObject focused;
@@ -62,6 +63,71 @@ namespace KyuBase.Objects
         {
             if (fThr.IsAlive)
                 resetEvent.Reset();
+        }
+
+        public void formClosing(object sender, _FormClosingEventArgs e)
+        {
+            onFormClose?.Invoke();
+        }
+
+        public void formKeyPress(object sender, _KeyPressEventArgs e)
+        {
+            if (focused?.GetType() == typeof(TextInput))
+                ((TextInput)focused).AddCharacter(e.KeyChar);
+            else
+                onKeyPress?.Invoke(e);
+        }
+
+        public void formPaint(object sender, _PaintEventArgs e)
+        {
+            A:
+            try
+            {
+                foreach (FObject foo in FObjects)
+                    e.Graphics.DrawImage(foo.window, foo.x, foo.y);
+            }
+            catch
+            {
+                goto A;
+            }
+        }
+
+        public void handlePaint(object sender, _PaintEventArgs e)
+        {
+            for (int idx = (FObjects.Count() - 1); idx > -1; idx--)
+                e.Graphics.DrawImage(FObjects[idx].window, FObjects[idx].x, FObjects[idx].y);
+        }
+
+        public void formMouseMove(object sender, _MouseEventArgs e)
+        {
+            try
+            {
+                FObject a = FObjects.First(f => f.x <= e.X && e.X - f.x <= f.window.Width && f.y <= e.Y && e.Y - f.y <= f.window.Height);
+                focused?.callEvnt(Evnts.OnMouseLeave, 0, 0);
+                focused = a;
+                focused?.callEvnt(Evnts.OnMouseHover, e.X, e.Y);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(e.X);
+                Console.WriteLine(ex.Message);
+                GC.Collect();
+            }
+        }
+
+        public void formMouseClick(object sender, _MouseEventArgs e)
+        {
+            onMouseClick?.Invoke(e);
+            if (e.Button == _MouseButtons.Left)
+                try
+                {
+                    focused = FObjects.First(f => f.x <= e.X && e.X - f.x <= f.window.Width && f.y <= e.Y && e.Y - f.y <= f.window.Height);
+                    focused.callEvnt(Evnts.OnClick, e.X - focused.x, e.Y);
+                }
+                catch
+                {
+                    focused = null;
+                }
         }
 
         public abstract void formRun();

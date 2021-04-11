@@ -7,13 +7,21 @@ using System.Text;
 
 namespace Resx.Classes
 {
+    public enum ResxType
+    {
+        Image,
+        Text,
+        MiscFile,
+    }
+
     public class Resource
     {
         public string name;
         public string path;
         private FHandle fh;
-
+        public ResxType resourceType;
         public Bitmap bmp;
+        public Sprite sprite;
         public FObject fobj;
         public Graphics gr;
 

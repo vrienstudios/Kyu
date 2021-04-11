@@ -19,7 +19,7 @@ namespace KyuBase.Integrations
         XButton2 = 16777216
     }
 
-    public class _MouseEventArgs
+    public class _MouseEventArgs : EventArgs
     {
         public _MouseEventArgs(_MouseButtons button, int clicks, int x, int y, int delta)
         {

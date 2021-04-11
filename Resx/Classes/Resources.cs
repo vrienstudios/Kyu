@@ -80,6 +80,38 @@ namespace Resx.Classes
             }
         }
 
+        public static List<string> dirs = new List<string>();
+        public static string[] GetAllDirs(String startingDir, string[] dirsFound)
+        {
+            return startingDir != null ? Directory.GetDirectories(startingDir).Length > 0 ? GetAllDirs(null, dirsFound.Concat(Directory.GetDirectories(startingDir)).ToArray()) : null : eDir(dirsFound);
+        }
+
+        public static void LoadImages()
+        {
+            foreach (string str in dirs)
+            {
+                string[] aski = Directory.GetFiles(str);
+                foreach (string no in aski)
+                {
+                    Resource res = new Resource(no);
+                    res.sprite = new Sprite((Bitmap)Bitmap.FromFile(no)) { name = no.Split('\\').Last() };
+                    res.resourceType = ResxType.Image;
+                    resources.Add(res);
+                    Console.WriteLine("Loaded: {0}", no);
+                }
+            }
+        }
+
+        private static string[] eDir(string[] dirs)
+        {
+            string[] found = { };
+            Resources.dirs.AddRange(dirs);
+            for (int idx = 0; idx < dirs.Length; idx++)
+                GetAllDirs(dirs[idx], new string[] { });
+
+            return null;
+        }
+
         /// <summary>
         /// Get files and directories in a certain path and adds them to the resources list.
         /// </summary>
