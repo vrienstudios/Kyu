@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="KyuBase">
+      <HintPath>..\KyuBase\bin\Debug\netstandard2.1\KyuBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Resx">
+      <HintPath>..\Resx\bin\Debug\netstandard2.1\Resx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
