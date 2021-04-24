@@ -28,7 +28,13 @@ namespace WinTest
             Graphics b = Graphics.FromImage(bg);
             b.Clear(Color.Black);
             FObject fobj = new FObject(0, 0, bg);
+            fobj.onMouseHover += Fobj_onMouseHover;
             handle.AddFObject(fobj);
+        }
+
+        private static void Fobj_onMouseHover(FObject fObject, int x, int y)
+        {
+            Console.WriteLine("{0}, {1}", x, y);
         }
     }
 }

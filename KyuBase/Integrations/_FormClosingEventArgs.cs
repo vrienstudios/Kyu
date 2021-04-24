@@ -22,8 +22,8 @@ namespace KyuBase.Integrations
         public _FormClosingEventArgs(object o)
         {
             Type t = o.GetType();
-            List<FieldInfo> fields = t.GetFields().ToList();
-            foreach(FieldInfo f in fields)
+            List<PropertyInfo> fields = t.GetProperties().ToList();
+            foreach(PropertyInfo f in fields)
             {
                 if (f.Name == "CloseReason")
                     CloseReason = (_CloseReason)(int)f.GetValue(o);

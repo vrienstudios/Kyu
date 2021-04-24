@@ -19,8 +19,8 @@ namespace KyuBase.Integrations
             Type eventType = actual.GetType();
             if (eventType.Name != "KeyPressEventArgs")
                 throw new ArgumentException("_KeyPressEventArgs can only take KeyPressEventArg");
-            List<FieldInfo> fields = eventType.GetFields().ToList();
-            foreach(FieldInfo field in fields)
+            List<PropertyInfo> fields = eventType.GetProperties().ToList();
+            foreach(PropertyInfo field in fields)
             {
                 if (field.Name == "KeyChar")
                     KeyChar = (char)field.GetValue(actual);

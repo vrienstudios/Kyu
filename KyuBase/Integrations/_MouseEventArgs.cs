@@ -36,8 +36,8 @@ namespace KyuBase.Integrations
             Type eventType = actual.GetType();
             if (eventType.Name != "MouseEventArgs")
                 throw new ArgumentException("_MouseEventArgs can only take MouseEventArgs");
-            List<FieldInfo> fields = eventType.GetFields().ToList();
-            foreach (FieldInfo field in fields)
+            List<PropertyInfo> fields = eventType.GetProperties().ToList();
+            foreach (PropertyInfo field in fields)
             {
                 switch (field.Name)
                 {

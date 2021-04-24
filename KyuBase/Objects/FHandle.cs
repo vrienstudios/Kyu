@@ -103,6 +103,11 @@ namespace KyuBase.Objects
             try
             {
                 FObject a = FObjects.First(f => f.x <= e.X && e.X - f.x <= f.window.Width && f.y <= e.Y && e.Y - f.y <= f.window.Height);
+                if (focused == a)
+                {
+                    focused?.callEvnt(Evnts.OnMouseHover, e.X, e.Y);
+                    return;
+                }
                 focused?.callEvnt(Evnts.OnMouseLeave, 0, 0);
                 focused = a;
                 focused?.callEvnt(Evnts.OnMouseHover, e.X, e.Y);
