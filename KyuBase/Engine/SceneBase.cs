@@ -17,7 +17,7 @@ namespace KyuBase.Engine
 
         public abstract FObject[] LoadScene();
 
-        public abstract string NextScene();
+        public abstract Scene NextScene();
 
         /// <summary>
         /// You should not override this.

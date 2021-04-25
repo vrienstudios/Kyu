@@ -19,6 +19,6 @@ namespace KyuBase.Engine
         /// <summary>
         /// Return which scene to load next.
         /// </summary>
-        String NextScene();
+        Scene NextScene();
     }
 }
