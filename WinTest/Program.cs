@@ -30,6 +30,8 @@ namespace WinTest
             FObject fobj = new FObject(0, 0, bg);
             fobj.onMouseHover += Fobj_onMouseHover;
             handle.AddFObject(fobj);
+            fobj.DrawStringCenter("Thank you for playing!\nClick to Continue");
+            fobj.DrawString(0, 0, "Beta");
         }
 
         private static void Fobj_onMouseHover(FObject fObject, int x, int y)
