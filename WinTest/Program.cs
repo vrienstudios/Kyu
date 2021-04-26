@@ -2,6 +2,8 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using WinTest.Scenes;
 
 namespace WinTest
 {
@@ -32,6 +34,15 @@ namespace WinTest
             handle.AddFObject(fobj);
             fobj.DrawStringCenter("Thank you for playing!\nClick to Continue");
             fobj.DrawString(0, 0, "Beta");
+
+            fobj.onClick += Fobj_onClick;
+        }
+
+        private static void Fobj_onClick(FObject fObject, int x, int y)
+        {
+            mainMenu m = new mainMenu();
+            handle.FObjects.Clear();
+            handle.FObjects = m.LoadScene().ToList();
         }
 
         private static void Fobj_onMouseHover(FObject fObject, int x, int y)

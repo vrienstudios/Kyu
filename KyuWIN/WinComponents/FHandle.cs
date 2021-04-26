@@ -70,7 +70,7 @@ namespace KyuWIN.WinComponents
                 try
                 {
                     form.Controls[0].Invoke((MethodInvoker)(() => form.Controls[0].Refresh()));
-                    Thread.Sleep(120);
+                    Thread.Sleep(140);
                 }
                 catch (Exception ex)
                 {

@@ -212,7 +212,7 @@ namespace KyuBase.Objects
             this.bgBuffer = new Bitmap(window.Width, window.Height);
             this.textBuffer = new Bitmap(window.Width, window.Height);
 
-            Graphics.FromImage(this.bgBuffer).DrawImage(window, 0, 0);
+            Graphics.FromImage(this.bgBuffer).DrawImage(window, new Rectangle() { X = 0, Y = 0, Height = window.Height, Width = window.Width });
             graphics = Graphics.FromImage(this.window);
             graphics.FillRectangle(new SolidBrush(Color.Transparent), 0, 0, window.Width, window.Height);
             bgGraphics = Graphics.FromImage(this.bgBuffer);
