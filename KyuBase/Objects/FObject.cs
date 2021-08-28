@@ -464,6 +464,12 @@ namespace KyuBase.Objects
             );
         }
 
+        public void CenterX(screenClass screen, int offset = 0)
+        {
+            this.x = (screen.windowDimensions[0] / 2) - this.width;
+            this.x += offset;
+        }
+
         private void RefreshLoop()
         {
             while (true)

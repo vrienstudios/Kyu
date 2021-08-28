@@ -15,7 +15,7 @@ namespace KyuBase.Engine
         private string _sceneID;
         private string _sceneName;
 
-        public abstract FObject[] LoadScene();
+        public abstract FObject[] LoadScene(screenClass screen = null);
 
         public abstract Scene NextScene();
 

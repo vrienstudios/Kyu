@@ -19,6 +19,8 @@ namespace WinTest
             Console.WriteLine("Loading Art Resources");
             Resx.Classes.Resources.GetAllDirs(Directory.GetCurrentDirectory() + "\\resx", new string[] { });
 
+            screenClass screenDim = new screenClass();
+
             foreach (string str in Resx.Classes.Resources.dirs)
             {
                 Console.WriteLine(str);

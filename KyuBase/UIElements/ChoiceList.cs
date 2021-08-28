@@ -26,5 +26,24 @@ namespace KyuBase.UIElements
             }
             this.choices = fobL.ToArray();
         }
+
+        public void Shift(int x, int y)
+        {
+            foreach (FObject fobj in choices)
+            {
+                fobj.x = fobj.x + x;
+                fobj.y = fobj.y + y;
+            }
+        }
+
+        public void Center(int x, int y)
+        {
+            foreach(FObject fobj in choices)
+            {
+                //(this.window.Width / 2) - (graphics.MeasureString(str, font).Width / 2)
+                fobj.x = (x / 2) - fobj.window.Width / 2;
+                fobj.y = ((y / 2) - fobj.window.Height / 2) + fobj.y;
+            }
+        }
     }
 }

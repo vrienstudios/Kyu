@@ -14,7 +14,7 @@ namespace KyuBase.Engine
         /// Return your scene as an FObject here.
         /// </summary>
         /// <returns></returns>
-        FObject[] LoadScene();
+        FObject[] LoadScene(screenClass screen = null);
 
         /// <summary>
         /// Return which scene to load next.

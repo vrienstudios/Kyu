@@ -12,18 +12,18 @@ namespace WinTest.Scenes
 {
     class mainMenu : KyuBase.Engine.SceneBase
     {
-        public override FObject[] LoadScene()
+        public override FObject[] LoadScene(screenClass screen = null)
         {
             //Resource res = Resources.GetResource("beachmoon-1.jpg");
             //res.resize(800, 800);
             //Bitmap b = res.bmp;
-            Bitmap b = (Bitmap)Bitmap.FromFile(@"F:\Work\Programming\K\Kyu\WinTest\bin\Debug\net5.0-windows\resx\ArtResources\bgs\beachmoon-1.jpg");
+            Bitmap b = Resources.GetResource("beachmoon-1.jpg").asBmp();
             b = Resources.ResizeBmp(800, 800, b);
             FObject background = new FObject(0, 0, b);
             background.onMouseHover += Background_onMouseHover;
-            ChoiceList menus = new ChoiceList(0, 0, 10, new string[] { "Play", "Credits" }, Resources.ResizeBmp(200,150, Resources.GetResource("building-1.jpg").asBmp()));
-            
-
+            ChoiceList menus = new ChoiceList(0, 0, 100, new string[] { "Play", "Credits" }, Resources.ResizeBmp(200,50, Resources.GetResource("building-1.jpg").asBmp()));
+            menus.Center(800, 400);
+            //Reverse order as they should appear.
             return new FObject[] { menus.choices[0], menus.choices[1], background };
         }
 
